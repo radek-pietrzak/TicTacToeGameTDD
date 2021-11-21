@@ -32,4 +32,32 @@ public class ActorMatrixTest {
         assertArrayEquals(expectedMatrix, actorMatrix.getMatrix());
 
     }
+
+    @Test
+    void shouldReturnOOnMiddlePosition() {
+
+        //given
+        String[][] expectedMatrix = {{" ", " ", " "}, {" ", "O", " "}, {" ", " ", " "}};
+
+        //when
+        actorMatrix.addActorToMatrix(false,22);
+
+        //then
+        assertArrayEquals(expectedMatrix, actorMatrix.getMatrix());
+
+    }
+
+    @Test
+    void shouldReturnXOnLastPosition() {
+
+        //given
+        String[][] expectedMatrix = {{" ", " ", " "}, {" ", " ", " "}, {" ", " ", "X"}};
+
+        //when
+        actorMatrix.addActorToMatrix(true,33);
+
+        //then
+        assertArrayEquals(expectedMatrix, actorMatrix.getMatrix());
+
+    }
 }
