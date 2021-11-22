@@ -12,7 +12,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="TicTacToeGameTDD" options="--add-exports jdk.internal.vm.compiler/org.graalvm.compiler.debug=ALL-UNNAMED" />
+      <module name="TicTacToeGameTDD" options="" />
     </option>
   </component>
 </project>

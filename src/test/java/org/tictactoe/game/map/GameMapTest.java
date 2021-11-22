@@ -13,17 +13,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GameMapTest {
 
-    private final PrintStream standardOut = System.out;
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    private final PrintStream printStream = System.out;
+    private final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
     @BeforeEach
     public void setUp() {
-        System.setOut(new PrintStream(outputStreamCaptor));
+        System.setOut(new PrintStream(byteArrayOutputStream));
     }
 
     @AfterEach
     public void tearDown() {
-        System.setOut(standardOut);
+        System.setOut(printStream);
     }
 
     @Test
@@ -44,7 +44,7 @@ public class GameMapTest {
         gameMap.createGameMap(actorMatrix);
 
         //then
-        assertEquals(emptyMap, outputStreamCaptor.toString());
+        assertEquals(emptyMap, byteArrayOutputStream.toString());
     }
 
     @Test
@@ -67,7 +67,7 @@ public class GameMapTest {
         gameMap.createGameMap(actorMatrix);
 
         //then
-        assertEquals(emptyMap, outputStreamCaptor.toString());
+        assertEquals(emptyMap, byteArrayOutputStream.toString());
     }
     @Test
     void shouldPrintMapWithXXXOnSlant() {
@@ -91,7 +91,7 @@ public class GameMapTest {
         gameMap.createGameMap(actorMatrix);
 
         //then
-        assertEquals(emptyMap, outputStreamCaptor.toString());
+        assertEquals(emptyMap, byteArrayOutputStream.toString());
     }
 
 }
