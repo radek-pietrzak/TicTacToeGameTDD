@@ -8,7 +8,7 @@ public class ActorMatrix {
         return matrix;
     }
 
-    public void addActorToMatrix(boolean isX, int position) {
+    public void addActorToMatrix(boolean isX, String position) {
         String actor;
 
         if (isX) {
@@ -17,8 +17,9 @@ public class ActorMatrix {
             actor = "O";
         }
 
-        int y = position % 10;
-        int x = (position - y) / 10;
+        int intPosition = Integer.parseInt(position);
+        int y = intPosition % 10;
+        int x = (intPosition - y) / 10;
 
         matrix[x - 1][y - 1] = actor;
     }

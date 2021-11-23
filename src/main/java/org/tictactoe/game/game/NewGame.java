@@ -10,15 +10,16 @@ public class NewGame {
 
     GameMap gameMap = new GameMap();
     ActorMatrix actorMatrix = new ActorMatrix();
+    private boolean xFlag = true;
+
+    public boolean isxFlag() {
+        return xFlag;
+    }
 
     public void startNewGame() {
 
         System.out.println("Hello!! Can we start new Game?");
 
-        processUserInputOnStartNewGame();
-    }
-
-    private void processUserInputOnStartNewGame() {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
 
@@ -33,7 +34,23 @@ public class NewGame {
                 return;
             }
         } while (!Objects.equals(input, "y") && !Objects.equals(input, "n"));
+    }
 
+    public void startTurn(boolean isX) {
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+
+        if (isX) {
+            System.out.println("X turn");
+
+            actorMatrix.addActorToMatrix(true, input);
+            gameMap.createGameMap(actorMatrix);
+
+            this.xFlag = false;
+        } else {
+            System.out.println("O turn");
+            this.xFlag = true;
+        }
     }
 
 

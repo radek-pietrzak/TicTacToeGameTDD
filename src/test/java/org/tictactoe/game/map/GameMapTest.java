@@ -53,7 +53,7 @@ public class GameMapTest {
         //given
         GameMap gameMap = new GameMap();
         ActorMatrix actorMatrix = new ActorMatrix();
-        actorMatrix.addActorToMatrix(false, 22);
+        actorMatrix.addActorToMatrix(false, "22");
 
         String emptyMap = """
                  | |\s
@@ -75,9 +75,9 @@ public class GameMapTest {
         //given
         GameMap gameMap = new GameMap();
         ActorMatrix actorMatrix = new ActorMatrix();
-        actorMatrix.addActorToMatrix(true, 11);
-        actorMatrix.addActorToMatrix(true, 22);
-        actorMatrix.addActorToMatrix(true, 33);
+        actorMatrix.addActorToMatrix(true, "11");
+        actorMatrix.addActorToMatrix(true, "22");
+        actorMatrix.addActorToMatrix(true, "33");
 
         String emptyMap = """
                 X| |\s

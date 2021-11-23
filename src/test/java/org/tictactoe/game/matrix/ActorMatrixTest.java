@@ -26,7 +26,7 @@ public class ActorMatrixTest {
         String[][] expectedMatrix = {{"X", " ", " "}, {" ", " ", " "}, {" ", " ", " "}};
 
         //when
-        actorMatrix.addActorToMatrix(true,11);
+        actorMatrix.addActorToMatrix(true,"11");
 
         //then
         assertArrayEquals(expectedMatrix, actorMatrix.getMatrix());
@@ -40,9 +40,9 @@ public class ActorMatrixTest {
         String[][] expectedMatrix = {{"X", " ", " "}, {" ", "X", " "}, {" ", " ", "X"}};
 
         //when
-        actorMatrix.addActorToMatrix(true,11);
-        actorMatrix.addActorToMatrix(true,22);
-        actorMatrix.addActorToMatrix(true,33);
+        actorMatrix.addActorToMatrix(true,"11");
+        actorMatrix.addActorToMatrix(true,"22");
+        actorMatrix.addActorToMatrix(true,"33");
 
         //then
         assertArrayEquals(expectedMatrix, actorMatrix.getMatrix());
@@ -56,9 +56,9 @@ public class ActorMatrixTest {
         String[][] expectedMatrix = {{" ", " ", " "}, {" ", " ", " "}, {"O", "X", "O"}};
 
         //when
-        actorMatrix.addActorToMatrix(false,31);
-        actorMatrix.addActorToMatrix(true,32);
-        actorMatrix.addActorToMatrix(false,33);
+        actorMatrix.addActorToMatrix(false,"31");
+        actorMatrix.addActorToMatrix(true,"32");
+        actorMatrix.addActorToMatrix(false,"33");
 
         //then
         assertArrayEquals(expectedMatrix, actorMatrix.getMatrix());
@@ -72,9 +72,9 @@ public class ActorMatrixTest {
         String[][] expectedMatrix = {{"X", " ", " "}, {"O", " ", " "}, {"X", " ", " "}};
 
         //when
-        actorMatrix.addActorToMatrix(true,11);
-        actorMatrix.addActorToMatrix(false,21);
-        actorMatrix.addActorToMatrix(true,31);
+        actorMatrix.addActorToMatrix(true,"11");
+        actorMatrix.addActorToMatrix(false,"21");
+        actorMatrix.addActorToMatrix(true,"31");
 
         //then
         assertArrayEquals(expectedMatrix, actorMatrix.getMatrix());
