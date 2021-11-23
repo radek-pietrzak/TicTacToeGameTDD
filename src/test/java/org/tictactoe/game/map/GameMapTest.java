@@ -15,6 +15,7 @@ public class GameMapTest {
 
     private final PrintStream printStream = System.out;
     private final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+    private final ActorMatrix actorMatrix = new ActorMatrix();
 
     @BeforeEach
     public void setUp() {
@@ -31,7 +32,6 @@ public class GameMapTest {
 
         //given
         GameMap gameMap = new GameMap();
-        ActorMatrix actorMatrix = new ActorMatrix();
 
         String emptyMap = """
                  | |\s
@@ -52,7 +52,6 @@ public class GameMapTest {
 
         //given
         GameMap gameMap = new GameMap();
-        ActorMatrix actorMatrix = new ActorMatrix();
         actorMatrix.addActorToMatrix(false, "22");
 
         String emptyMap = """
@@ -74,7 +73,6 @@ public class GameMapTest {
 
         //given
         GameMap gameMap = new GameMap();
-        ActorMatrix actorMatrix = new ActorMatrix();
         actorMatrix.addActorToMatrix(true, "11");
         actorMatrix.addActorToMatrix(true, "22");
         actorMatrix.addActorToMatrix(true, "33");
@@ -85,6 +83,29 @@ public class GameMapTest {
                  |X|\s
                 -+-+-
                  | |X""";
+
+
+        //when
+        gameMap.createGameMap(actorMatrix);
+
+        //then
+        assertEquals(emptyMap, byteArrayOutputStream.toString());
+    }
+
+    @Test
+    void shouldPrintMapWithTwoXInMiddle() {
+
+        //given
+        GameMap gameMap = new GameMap();
+        actorMatrix.addActorToMatrix(true, "12");
+        actorMatrix.addActorToMatrix(true, "32");
+
+        String emptyMap = """
+                 | |\s
+                -+-+-
+                X| |X
+                -+-+-
+                 | |\s""";
 
 
         //when

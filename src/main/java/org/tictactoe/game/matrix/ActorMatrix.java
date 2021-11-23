@@ -2,7 +2,11 @@ package org.tictactoe.game.matrix;
 
 public class ActorMatrix {
 
-    private String[][] matrix = {{" ", " ", " "}, {" ", " ", " "}, {" ", " ", " "}};
+    private String[][] matrix = {
+            {" ", " ", " "},
+            {" ", " ", " "},
+            {" ", " ", " "}
+    };
 
     public String[][] getMatrix() {
         return matrix;
@@ -17,10 +21,9 @@ public class ActorMatrix {
             actor = "O";
         }
 
-        int intPosition = Integer.parseInt(position);
-        int y = intPosition % 10;
-        int x = (intPosition - y) / 10;
+        int x = Integer.parseInt(position.substring(0, 1));
+        int y = Integer.parseInt(position.substring(1, 2));
 
-        matrix[x - 1][y - 1] = actor;
+        matrix[y - 1][x - 1] = actor;
     }
 }

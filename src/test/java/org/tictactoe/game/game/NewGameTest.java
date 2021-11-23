@@ -2,7 +2,10 @@ package org.tictactoe.game.game;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.tictactoe.game.matrix.ActorMatrix;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -10,14 +13,13 @@ import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.when;
 
 public class NewGameTest {
 
     private final PrintStream printStream = System.out;
     private final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
     private final NewGame newGame = new NewGame();
+    private final ActorMatrix actorMatrix = new ActorMatrix();
 
 
     @BeforeEach
@@ -30,6 +32,7 @@ public class NewGameTest {
         System.setOut(printStream);
     }
 
+    @Disabled
     @Test
     void validAnswerYesShouldResultInExpectedOutput() {
 
@@ -39,7 +42,6 @@ public class NewGameTest {
         System.setIn(byteArrayInputStream);
         String expectedOutput = """
                 Hello!! Can we start new Game?\r
-                Type y or n\r
                 Starting game\r
                  | |\s
                 -+-+-
@@ -48,7 +50,7 @@ public class NewGameTest {
                  | |\s""";
 
         //when
-        newGame.startNewGame();
+        newGame.startNewGame(actorMatrix);
 
         //then
         assertEquals(expectedOutput, byteArrayOutputStream.toString());
@@ -63,12 +65,11 @@ public class NewGameTest {
         System.setIn(byteArrayInputStream);
         String expectedOutput = """
                 Hello!! Can we start new Game?\r
-                Type y or n\r
                 Bye!!\r
                 """;
 
         //when
-        newGame.startNewGame();
+        newGame.startNewGame(actorMatrix);
 
         //then
         assertEquals(expectedOutput, byteArrayOutputStream.toString());
@@ -89,7 +90,7 @@ public class NewGameTest {
                 -+-+-
                  | |\s""";
         //when
-        newGame.startTurn(true);
+        newGame.startTurn(true, actorMatrix);
         //then
         assertEquals(expectedOutput, byteArrayOutputStream.toString());
     }
@@ -103,7 +104,7 @@ public class NewGameTest {
         System.setIn(byteArrayInputStream);
         String expectedOutput = "O turn\r\n";
         //when
-        newGame.startTurn(false);
+        newGame.startTurn(false, actorMatrix);
         //then
         assertEquals(expectedOutput, byteArrayOutputStream.toString());
     }
@@ -116,7 +117,7 @@ public class NewGameTest {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(byteArrayInputStream);
         //when
-        newGame.startTurn(true);
+        newGame.startTurn(true, actorMatrix);
         //then
         assertFalse(newGame.isxFlag());
     }
@@ -129,9 +130,60 @@ public class NewGameTest {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(byteArrayInputStream);
         //when
-        newGame.startTurn(false);
+        newGame.startTurn(false, actorMatrix);
         //then
         assertTrue(newGame.isxFlag());
+    }
+
+    @Test
+    void ifFirstRowMatchShouldEndGame(){
+
+        //given
+        actorMatrix.addActorToMatrix(true, "11");
+        actorMatrix.addActorToMatrix(true, "21");
+        actorMatrix.addActorToMatrix(true, "31");
+
+        String expectedOutput = "X wins\r\n";
+
+        //when
+        newGame.startTurn(true, actorMatrix);
+
+        //then
+        assertEquals(expectedOutput, byteArrayOutputStream.toString());
+    }
+
+    @Test
+    void ifSecondRowMatchShouldEndGame(){
+
+        //given
+        actorMatrix.addActorToMatrix(false, "12");
+        actorMatrix.addActorToMatrix(false, "22");
+        actorMatrix.addActorToMatrix(false, "32");
+
+        String expectedOutput = "O wins\r\n";
+
+        //when
+        newGame.startTurn(false, actorMatrix);
+
+        //then
+        assertEquals(expectedOutput, byteArrayOutputStream.toString());
+    }
+
+    @Test
+    void ifThirdRowMatchShouldEndGame(){
+
+        //given
+        actorMatrix.addActorToMatrix(true, "13");
+        actorMatrix.addActorToMatrix(true, "23");
+        actorMatrix.addActorToMatrix(true, "33");
+
+        String expectedOutput = "X wins\r\n";
+
+        //when
+        newGame.startTurn(true, actorMatrix);
+
+        //then
+        assertEquals(expectedOutput, byteArrayOutputStream.toString());
     }
 
 
