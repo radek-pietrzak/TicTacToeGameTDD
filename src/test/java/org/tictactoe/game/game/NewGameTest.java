@@ -10,6 +10,7 @@ import org.tictactoe.game.matrix.ActorMatrix;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -176,6 +177,91 @@ public class NewGameTest {
         actorMatrix.addActorToMatrix(true, "13");
         actorMatrix.addActorToMatrix(true, "23");
         actorMatrix.addActorToMatrix(true, "33");
+
+        String expectedOutput = "X wins\r\n";
+
+        //when
+        newGame.startTurn(true, actorMatrix);
+
+        //then
+        assertEquals(expectedOutput, byteArrayOutputStream.toString());
+    }
+
+    @Test
+    void ifFirstColumnMatchShouldEndGame(){
+
+        //given
+        actorMatrix.addActorToMatrix(true, "11");
+        actorMatrix.addActorToMatrix(true, "12");
+        actorMatrix.addActorToMatrix(true, "13");
+
+        String expectedOutput = "X wins\r\n";
+
+        //when
+        newGame.startTurn(true, actorMatrix);
+
+        //then
+        assertEquals(expectedOutput, byteArrayOutputStream.toString());
+    }
+
+    @Test
+    void ifSecondColumnMatchShouldEndGame(){
+
+        //given
+        actorMatrix.addActorToMatrix(true, "21");
+        actorMatrix.addActorToMatrix(true, "22");
+        actorMatrix.addActorToMatrix(true, "23");
+
+        String expectedOutput = "X wins\r\n";
+
+        //when
+        newGame.startTurn(true, actorMatrix);
+
+        //then
+        assertEquals(expectedOutput, byteArrayOutputStream.toString());
+    }
+
+    @Test
+    void ifThirdColumnMatchShouldEndGame(){
+
+        //given
+        actorMatrix.addActorToMatrix(false, "31");
+        actorMatrix.addActorToMatrix(false, "32");
+        actorMatrix.addActorToMatrix(false, "33");
+
+        String expectedOutput = "O wins\r\n";
+
+        //when
+        newGame.startTurn(false, actorMatrix);
+
+        //then
+        assertEquals(expectedOutput, byteArrayOutputStream.toString());
+    }
+
+    @Test
+    void ifFirstSlantMatchShouldEndGame(){
+
+        //given
+        actorMatrix.addActorToMatrix(false, "11");
+        actorMatrix.addActorToMatrix(false, "22");
+        actorMatrix.addActorToMatrix(false, "33");
+
+        String expectedOutput = "O wins\r\n";
+
+        //when
+        newGame.startTurn(false, actorMatrix);
+
+        //then
+        assertEquals(expectedOutput, byteArrayOutputStream.toString());
+    }
+
+    @Test
+    void ifSecondSlantMatchShouldEndGame(){
+
+        //given
+        actorMatrix.addActorToMatrix(true, "31");
+        actorMatrix.addActorToMatrix(true, "22");
+        actorMatrix.addActorToMatrix(true, "13");
 
         String expectedOutput = "X wins\r\n";
 

@@ -53,6 +53,27 @@ public class NewGame {
             System.out.println(actorMatrix.getMatrix()[2][0] + " wins");
             return;
         }
+        if (isFirstColumnMatch(actorMatrix)) {
+            System.out.println(actorMatrix.getMatrix()[0][0] + " wins");
+            return;
+        }
+        if (isSecondColumnMatch(actorMatrix)) {
+            System.out.println(actorMatrix.getMatrix()[0][1] + " wins");
+            return;
+        }
+        if (isThirdColumnMatch(actorMatrix)) {
+            System.out.println(actorMatrix.getMatrix()[0][2] + " wins");
+            return;
+        }
+        if (isFirstSlantMatch(actorMatrix)) {
+            System.out.println(actorMatrix.getMatrix()[0][0] + " wins");
+            return;
+        }
+        if (isSecondSlantMatch(actorMatrix)) {
+            System.out.println(actorMatrix.getMatrix()[0][2] + " wins");
+            return;
+        }
+
 
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
@@ -89,6 +110,41 @@ public class NewGame {
                 Objects.equals(actorMatrix.getMatrix()[2][0], "O")) &&
                 Objects.equals(actorMatrix.getMatrix()[2][0], actorMatrix.getMatrix()[2][1]) &&
                 Objects.equals(actorMatrix.getMatrix()[2][2], actorMatrix.getMatrix()[2][1]);
+    }
+
+    private boolean isFirstColumnMatch(ActorMatrix actorMatrix) {
+        return (Objects.equals(actorMatrix.getMatrix()[0][0], "X") ||
+                Objects.equals(actorMatrix.getMatrix()[0][0], "O")) &&
+                Objects.equals(actorMatrix.getMatrix()[0][0], actorMatrix.getMatrix()[1][0]) &&
+                Objects.equals(actorMatrix.getMatrix()[2][0], actorMatrix.getMatrix()[1][0]);
+    }
+
+    private boolean isSecondColumnMatch(ActorMatrix actorMatrix) {
+        return (Objects.equals(actorMatrix.getMatrix()[0][1], "X") ||
+                Objects.equals(actorMatrix.getMatrix()[0][1], "O")) &&
+                Objects.equals(actorMatrix.getMatrix()[0][1], actorMatrix.getMatrix()[1][1]) &&
+                Objects.equals(actorMatrix.getMatrix()[2][1], actorMatrix.getMatrix()[1][1]);
+    }
+
+    private boolean isThirdColumnMatch(ActorMatrix actorMatrix) {
+        return (Objects.equals(actorMatrix.getMatrix()[0][2], "X") ||
+                Objects.equals(actorMatrix.getMatrix()[0][2], "O")) &&
+                Objects.equals(actorMatrix.getMatrix()[0][2], actorMatrix.getMatrix()[1][2]) &&
+                Objects.equals(actorMatrix.getMatrix()[2][2], actorMatrix.getMatrix()[1][2]);
+    }
+
+    private boolean isFirstSlantMatch(ActorMatrix actorMatrix) {
+        return (Objects.equals(actorMatrix.getMatrix()[0][0], "X") ||
+                Objects.equals(actorMatrix.getMatrix()[0][0], "O")) &&
+                Objects.equals(actorMatrix.getMatrix()[0][0], actorMatrix.getMatrix()[1][1]) &&
+                Objects.equals(actorMatrix.getMatrix()[2][2], actorMatrix.getMatrix()[1][1]);
+    }
+
+    private boolean isSecondSlantMatch(ActorMatrix actorMatrix) {
+        return (Objects.equals(actorMatrix.getMatrix()[0][2], "X") ||
+                Objects.equals(actorMatrix.getMatrix()[0][2], "O")) &&
+                Objects.equals(actorMatrix.getMatrix()[0][2], actorMatrix.getMatrix()[1][1]) &&
+                Objects.equals(actorMatrix.getMatrix()[2][0], actorMatrix.getMatrix()[1][1]);
     }
 
 
